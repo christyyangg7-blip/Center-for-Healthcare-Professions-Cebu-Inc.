@@ -11,12 +11,13 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
-    background:#eef2ea;
-    padding:30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding:30px 20px;
+    min-height:100vh;
 }
 
 /* MAIN CARD */
@@ -24,26 +25,52 @@ body{
     max-width:900px;
     margin:auto;
     background:#fff;
-    border-radius:18px;
+    border-radius:24px;
     overflow:hidden;
-    box-shadow:0 12px 30px rgba(0,0,0,0.15);
+    box-shadow:0 20px 60px rgba(0,0,0,0.25);
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* HEADER */
 .header{
-    background:#5a8d03;
-    padding:25px;
+    background: linear-gradient(135deg, #5a8d03 0%, #7ab80e 100%);
+    padding:40px 25px;
     text-align:center;
     color:#fff;
     position:relative;
+    box-shadow: 0 4px 20px rgba(90, 141, 3, 0.3);
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
 }
 
 .header img{
-    width:85px;
-    height:85px;
+    width:95px;
+    height:95px;
     border-radius:50%;
-    border:3px solid #fff;
-    margin-bottom:10px;
+    border:4px solid #fff;
+    object-fit:cover;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.header img:hover {
+    transform: scale(1.05);
 }
 
 /* BACK BUTTON */
@@ -51,140 +78,292 @@ body{
     position:absolute;
     left:20px;
     top:20px;
-    font-size:22px;
+    font-size:20px;
     text-decoration:none;
     color:#fff;
-    background:rgba(255,255,255,0.2);
-    padding:8px 12px;
-    border-radius:8px;
-    transition:0.3s;
+    background:rgba(255,255,255,0.25);
+    padding:10px 14px;
+    border-radius:10px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .back-btn:hover{
     background:rgba(255,255,255,0.4);
+    transform: translateX(-3px);
+    border-color: rgba(255,255,255,0.5);
 }
 
 /* CONTENT */
 .content{
-    padding:25px;
+    padding:40px;
 }
 
 h2{
-    color:#556B2F;
-    margin:20px 0 10px;
+    color:#2c3e50;
+    margin:30px 0 20px;
+    font-size: 22px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2:first-of-type {
+    margin-top: 0;
+}
+
+h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #5a8d03, #7ab80e);
+    border-radius: 2px;
+}
+
+h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 12px;
 }
 
 /* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:15px;
+    gap:20px;
 }
 
 label{
-    font-weight:bold;
-    margin-top:10px;
+    font-weight:600;
+    margin-top:0;
     display:block;
-    color:#333;
+    color:#2c3e50;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 input, select{
     width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    margin-top:6px;
+    padding:14px 16px;
+    border:2px solid #e0e0e0;
+    border-radius:12px;
+    margin-top:8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+input:focus, select:focus{
+    outline: none;
+    border-color: #5a8d03;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(90, 141, 3, 0.1);
+}
+
+input:hover, select:hover {
+    border-color: #b8d4a8;
+}
+
+input::placeholder {
+    color: #999;
 }
 
 /* TERMS */
 .terms{
-    margin-top:20px;
-    background:#f7f9f3;
-    padding:15px;
-    border-radius:12px;
-    border-left:5px solid #556B2F;
+    margin-top:30px;
+    background: linear-gradient(135deg, #f5f9f0 0%, #f0f7eb 100%);
+    padding:20px;
+    border-radius:14px;
+    border-left:5px solid #5a8d03;
+    border: 2px solid #e8f0dd;
+}
+
+.terms strong {
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.terms p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .agree-box{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
     margin-top:15px;
-    font-weight:bold;
-    color:#556B2F;
+    font-weight:600;
+    color:#2c3e50;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.agree-box:hover {
+    color: #5a8d03;
 }
 
 .agree-box input{
-    width:18px;
-    height:18px;
+    width:20px;
+    height:20px;
+    cursor: pointer;
+    accent-color: #5a8d03;
 }
 
 /* PAYMENT CARDS */
 .payment-options{
     display:grid;
-    gap:12px;
-    margin-top:15px;
+    gap:14px;
+    margin-top:20px;
 }
 
 .card{
-    border:2px solid #ddd;
-    padding:15px;
-    border-radius:12px;
+    border:2px solid #e0e0e0;
+    padding:18px;
+    border-radius:14px;
     cursor:pointer;
-    transition:0.3s;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #333;
 }
 
 .card:hover{
-    border-color:#556B2F;
+    border-color:#5a8d03;
+    background: #f5f9f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(90, 141, 3, 0.15);
 }
 
 .card.active{
-    border-color:#556B2F;
-    background:#f3f7ea;
+    border-color:#5a8d03;
+    background: linear-gradient(135deg, #f5f9f0 0%, #e8f0dd 100%);
+    box-shadow: 0 6px 20px rgba(90, 141, 3, 0.2);
+}
+
+.card img {
+    filter: brightness(1.1);
 }
 
 /* DETAILS */
 .details{
-    margin-top:15px;
-    padding:15px;
-    background:#f7f9f3;
-    border-radius:12px;
+    margin-top:20px;
+    padding:20px;
+    background: linear-gradient(135deg, #f5f9f0 0%, #f0f7eb 100%);
+    border-radius:14px;
+    border: 2px solid #e8f0dd;
+    animation: fadeIn 0.3s ease;
 }
 
-/* QR */
-.qr{
-    text-align:center;
-    margin-top:10px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.qr img{
-    width:180px;
-    border-radius:12px;
-    border:3px solid #556B2F;
+.details p {
+    color: #555;
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.details b {
+    color: #2c3e50;
 }
 
 /* BUTTON */
 button{
     width:100%;
-    margin-top:25px;
-    padding:15px;
-    background:#556B2F;
+    margin-top:30px;
+    padding:16px;
+    background: linear-gradient(135deg, #5a8d03 0%, #7ab80e 100%);
     color:#fff;
     border:none;
     border-radius:12px;
     font-size:16px;
-    font-weight:bold;
+    font-weight:700;
     cursor:pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(90, 141, 3, 0.3);
 }
 
 button:hover{
-    background:#6B8E23;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(90, 141, 3, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* NOTE STYLING */
+p strong {
+    color: #d9534f;
+}
+
+p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+p a {
+    color: #5a8d03;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+p a:hover {
+    color: #7ab80e;
+    text-decoration: underline;
 }
 
 /* MOBILE */
 @media(max-width:700px){
     .grid{
         grid-template-columns:1fr;
+        gap:15px;
+    }
+    
+    .content {
+        padding: 25px;
+    }
+    
+    .header {
+        padding: 30px 20px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        margin: 25px 0 15px;
+    }
+    
+    button {
+        padding: 14px;
+        font-size: 15px;
     }
 }
 
@@ -201,41 +380,42 @@ button:hover{
         <!-- BACK BUTTON -->
         <a href="https://chpcebu.com" class="back-btn">←</a>
 
-        <img src="./image.png" alt="logo">
-        <h1>Enrollment Form</h1>
+        <img src="./image.png" alt="CHP Cebu Logo">
+        <h1>Student Enrollment Form</h1>
+        <p style="margin-top: 12px; font-size: 14px; opacity: 0.95;">Join Our Healthcare Services Program</p>
     </div>
 
     <div class="content">
 
         <form action="https://formspree.io/f/mpqbkwzd" method="POST">
 
-        <h2>Personal Information</h2>
+        <h2>📋 Personal Information</h2>
 
         <div class="grid">
             <div>
-                <label>Lastname</label>
-                <input type="text" name="Lastname" required>
+                <label>Last Name</label>
+                <input type="text" name="Lastname" required placeholder="Enter your last name">
             </div>
 
             <div>
-                <label>Firstname</label>
-                <input type="text" name="Firstname" required>
+                <label>First Name</label>
+                <input type="text" name="Firstname" required placeholder="Enter your first name">
             </div>
 
             <div>
                 <label>Contact Number</label>
-                <input type="text" name="Contact Number" required>
+                <input type="text" name="Contact Number" required placeholder="+63 9XX XXXX XXXX">
             </div>
 
             <div>
                 <label>Email Address</label>
-                <input type="email" name="Email Address" required>
+                <input type="email" name="Email Address" required placeholder="your.email@example.com">
             </div>
 
             <div>
                 <label>Citizenship</label>
                 <select name="Citizenship" required>
-                    <option value="">Select Citizenship</option>
+                    <option value="">-- Select Citizenship --</option>
                     <option>I am a Filipino</option>
                     <option>I am a Foreign</option>
                 </select>
@@ -243,73 +423,89 @@ button:hover{
 
             <div>
                 <label>Current Address</label>
-                <input type="text" name="Current Address" required>
+                <input type="text" name="Current Address" required placeholder="Enter your address">
             </div>
         </div>
 
-        <label>Prefered Schedule</label>
-        <select name="Schedule" required>
-            <option value="">Select Schedule</option>
-            <option>DAY</option>
-            <option>NIGHT</option>
-            <option>WEEKEND</option>
-        </select>
+        <div style="margin-top: 25px;">
+            <label>Preferred Schedule</label>
+            <select name="Schedule" required>
+                <option value="">-- Select Schedule --</option>
+                <option>DAY</option>
+                <option>NIGHT</option>
+                <option>WEEKEND</option>
+            </select>
+        </div>
 
-        <label>Course</label>
-        <select name="Course" required>
-            <option value="">Select Course</option>
-            <option>Healthcare Services NCII</option>
-            <option>Caregiving NCII</option>
-            <option>HOUSEKEEPING NCII</option>
-            <option>TOURISM PROMOTION SERVICES NCII</option>
-        </select>
+        <div style="margin-top: 20px;">
+            <label>Course</label>
+            <select name="Course" required>
+                <option value="">-- Select Course --</option>
+                <option>Healthcare Services NCII</option>
+                <option>Caregiving NCII</option>
+                <option>HOUSEKEEPING NCII</option>
+                <option>TOURISM PROMOTION SERVICES NCII</option>
+            </select>
+        </div>
 
         <!-- TERMS -->
         <div class="terms">
-            <strong>Terms & Agreement</strong>
-            <p style="margin-top:10px; font-size:14px;">
-                I certify that all information is true and I agree that payments are non-refundable once processed.
+            <strong>✓ Terms & Conditions Agreement</strong>
+            <p style="margin-top:12px; font-size:13px;">
+                I certify that all information provided is true and accurate. I understand that all payments are non-refundable once processed.
             </p>
 
-            <label class="agree-box">
+            <label class="agree-box" style="margin-top: 15px;">
                 <input type="checkbox" name="Agreement" required>
-                I agree to the Terms and Conditions
+                <span>I agree to the Terms and Conditions</span>
             </label>
         </div>
 
         <!-- PAYMENT -->
-        <h2>Payment Method</h2>
+        <h2 style="margin-top: 35px;">💳 Payment Method</h2>
 
         <div class="payment-options">
 
             <div class="card" onclick="selectPayment('GCASH')" id="gcashCard">
-                <img src="./Screenshot 2026-05-11 105457.jpg" style="width:30px; vertical-align:middle; margin-right:10px;">
-                <span>GCash Payment</span>
+                <img src="./Screenshot 2026-05-11 105457.jpg" style="width:35px; height:auto;">
+                <span style="flex: 1;">GCash Payment</span>
+                <span style="font-size: 12px; color: #999;">Mobile Wallet</span>
             </div>
 
             <div class="card" onclick="selectPayment('PNB')" id="pnbCard">
-                🏦 Philippine National Bank
+                🏦 <span style="flex: 1; margin-left: 10px;">Philippine National Bank</span>
+                <span style="font-size: 12px; color: #999;">Bank Transfer</span>
             </div>
 
             <div class="card" onclick="selectPayment('CHINA')" id="chinaCard">
-                🏦 Chinabank
+                🏦 <span style="flex: 1; margin-left: 10px;">Chinabank</span>
+                <span style="font-size: 12px; color: #999;">Bank Transfer</span>
             </div>
 
         </div>
 
-        <div id="details" class="details"></div>
+        <div id="details" class="details" style="display: none;"></div>
 
         <input type="hidden" name="Payment Method" id="paymentMethod">
 
-        <label>Reference Number</label>
-        <input type="text" name="Reference Number" required>
+        <div style="margin-top: 25px;">
+            <label>Reference Number</label>
+            <input type="text" name="Reference Number" required placeholder="Enter transaction reference number">
+        </div>
 
-        <label>Sender Name</label>
-        <input type="text" name="Sender Name" required>
+        <div style="margin-top: 20px;">
+            <label>Sender Name</label>
+            <input type="text" name="Sender Name" required placeholder="Enter name of the sender">
+        </div>
 
-        <p><strong>NOTE</strong> Please send proof of payment via screenshot. <a href="https://www.facebook.com/chpcebuinc" target="_blank">Click Here</a></p>
+        <div style="margin-top: 25px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
+            <p><strong>📸 NOTE:</strong> Please send proof of payment via screenshot to complete your enrollment.</p>
+            <p style="margin-top: 10px; margin-bottom: 0;">
+                <a href="https://www.facebook.com/chpcebuinc" target="_blank">→ Click here to message us on Facebook</a>
+            </p>
+        </div>
 
-        <button type="submit">PAY & SUBMIT ENROLLMENT</button>
+        <button type="submit">✓ PAY & SUBMIT ENROLLMENT</button>
 
         </form>
 
@@ -326,37 +522,65 @@ function selectPayment(type){
 
     let box = document.getElementById("details");
     document.getElementById("paymentMethod").value = type;
+    box.style.display = "block";
 
     if(type === "GCASH"){
         document.getElementById("gcashCard").classList.add("active");
         box.innerHTML = `
-            <h3>GCash</h3>
-           <p><b>Registration Fee for Filipino </b> ₱2,500.00</p> <p><b>Registration Fee for Foreign </b> $125.00</p> <br>
-            <p><b>Name:</b> Bernard C. Restificar</p>
-            <p><b>Number:</b> 09176206683</p>
+            <h3>💰 GCash Payment</h3>
+            <div style="margin: 15px 0; padding: 12px; background: #e8f5e9; border-radius: 8px;">
+                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #2c3e50;">₱2,500.00</span></p>
+                <p style="margin-top: 8px;"><b>Registration Fee (Foreign):</b> <span style="font-size: 18px; color: #2c3e50;">$125.00</span></p>
+            </div>
+            <div style="margin-top: 15px; padding: 12px; background: #f0f7ff; border-radius: 8px;">
+                <p><b>📱 Name:</b> Bernard C. Restificar</p>
+                <p style="margin-top: 8px;"><b>📞 Number:</b> 09176206683</p>
+            </div>
         `;
     }
 
     if(type === "PNB"){
         document.getElementById("pnbCard").classList.add("active");
         box.innerHTML = `
-            <h3>PNB</h3>
-            <p><b>Registration Fee for Filipino </b> ₱2,500.00</p> <p><b>Registration Fee for Foreign </b> $125.00</p> <br>
-            <p><b>Account:</b> Center for Healthcare Professions Cebu, Inc.</p>
-            <p><b>Number:</b> 303270006265</p>
+            <h3>🏦 Philippine National Bank</h3>
+            <div style="margin: 15px 0; padding: 12px; background: #e8f5e9; border-radius: 8px;">
+                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #2c3e50;">₱2,500.00</span></p>
+                <p style="margin-top: 8px;"><b>Registration Fee (Foreign):</b> <span style="font-size: 18px; color: #2c3e50;">$125.00</span></p>
+            </div>
+            <div style="margin-top: 15px; padding: 12px; background: #f0f7ff; border-radius: 8px;">
+                <p><b>🏢 Account Name:</b> Center for Healthcare Professions Cebu, Inc.</p>
+                <p style="margin-top: 8px;"><b>🔢 Account Number:</b> 303270006265</p>
+            </div>
         `;
     }
 
     if(type === "CHINA"){
         document.getElementById("chinaCard").classList.add("active");
         box.innerHTML = `
-            <h3>ChinaBank</h3>
-            <p><b>Registration Fee for Filipino </b> ₱2,500.00</p> <p><b>Registration Fee for Foreign </b> $125.00</p> <br>
-            <p><b>Account:</b> Center for Healthcare Professions Cebu, Inc.</p>
-            <p><b>Number:</b> 1740451714</p>
+            <h3>🏦 Chinabank</h3>
+            <div style="margin: 15px 0; padding: 12px; background: #e8f5e9; border-radius: 8px;">
+                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #2c3e50;">₱2,500.00</span></p>
+                <p style="margin-top: 8px;"><b>Registration Fee (Foreign):</b> <span style="font-size: 18px; color: #2c3e50;">$125.00</span></p>
+            </div>
+            <div style="margin-top: 15px; padding: 12px; background: #f0f7ff; border-radius: 8px;">
+                <p><b>🏢 Account Name:</b> Center for Healthcare Professions Cebu, Inc.</p>
+                <p style="margin-top: 8px;"><b>🔢 Account Number:</b> 1740451714</p>
+            </div>
         `;
     }
 }
+
+// Smooth scroll to payment details when selected
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            setTimeout(() => {
+                document.getElementById('details').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        });
+    });
+});
 
 </script>
 
