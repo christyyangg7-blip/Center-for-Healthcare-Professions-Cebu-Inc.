@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enrollment Form</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#eef2ea;
+    padding:30px;
+}
+
+/* MAIN CARD */
+.container{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+.header{
+    background:#5a8d03;
+    padding:25px;
+    text-align:center;
+    color:#fff;
+    position:relative;
+}
+
+.header img{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    border:3px solid #fff;
+    margin-bottom:10px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    position:absolute;
+    left:20px;
+    top:20px;
+    font-size:22px;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(255,255,255,0.2);
+    padding:8px 12px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:rgba(255,255,255,0.4);
+}
+
+/* CONTENT */
+.content{
+    padding:25px;
+}
+
+h2{
+    color:#556B2F;
+    margin:20px 0 10px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+label{
+    font-weight:bold;
+    margin-top:10px;
+    display:block;
+    color:#333;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    margin-top:6px;
+}
+
+/* TERMS */
+.terms{
+    margin-top:20px;
+    background:#f7f9f3;
+    padding:15px;
+    border-radius:12px;
+    border-left:5px solid #556B2F;
+}
+
+.agree-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:15px;
+    font-weight:bold;
+    color:#556B2F;
+}
+
+.agree-box input{
+    width:18px;
+    height:18px;
+}
+
+/* PAYMENT CARDS */
+.payment-options{
+    display:grid;
+    gap:12px;
+    margin-top:15px;
+}
+
+.card{
+    border:2px solid #ddd;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card:hover{
+    border-color:#556B2F;
+}
+
+.card.active{
+    border-color:#556B2F;
+    background:#f3f7ea;
+}
+
+/* DETAILS */
+.details{
+    margin-top:15px;
+    padding:15px;
+    background:#f7f9f3;
+    border-radius:12px;
+}
+
+/* QR */
+.qr{
+    text-align:center;
+    margin-top:10px;
+}
+
+.qr img{
+    width:180px;
+    border-radius:12px;
+    border:3px solid #556B2F;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    margin-top:25px;
+    padding:15px;
+    background:#556B2F;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#6B8E23;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <!-- BACK BUTTON -->
+        <a href="https://chpcebu.com" class="back-btn">←</a>
+
+        <img src="./image.png" alt="logo">
+        <h1>Enrollment Checkout</h1>
+    </div>
+
+    <div class="content">
+
+        <form action="https://formspree.io/f/mpqbkwzd" method="POST">
+
+        <h2>Personal Information</h2>
+
+        <div class="grid">
+            <div>
+                <label>Lastname</label>
+                <input type="text" name="Lastname" required>
+            </div>
+
+            <div>
+                <label>Firstname</label>
+                <input type="text" name="Firstname" required>
+            </div>
+
+            <div>
+                <label>Contact Number</label>
+                <input type="text" name="Contact Number" required>
+            </div>
+
+            <div>
+                <label>Email Address</label>
+                <input type="email" name="Email Address" required>
+            </div>
+
+            <div>
+                <label>Citizenship</label>
+                <select name="Citizenship" required>
+                    <option value="">Select Citizenship</option>
+                    <option>I am a Filipino</option>
+                    <option>I am a Foreign</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Current Address</label>
+                <input type="text" name="Current Address" required>
+            </div>
+        </div>
+
+        <label>Prefered Schedule</label>
+        <select name="Schedule" required>
+            <option value="">Select Schedule</option>
+            <option>DAY</option>
+            <option>NIGHT</option>
+            <option>WEEKEND</option>
+        </select>
+
+        <label>Course</label>
+        <select name="Course" required>
+            <option value="">Select Course</option>
+            <option>Healthcare Services NCII</option>
+            <option>Caregiving NCII</option>
+            <option>HOUSEKEEPING NCII</option>
+            <option>TOURISM PROMOTION SERVICES NCII</option>
+        </select>
+
+        <!-- TERMS -->
+        <div class="terms">
+            <strong>Terms & Agreement</strong>
+            <p style="margin-top:10px; font-size:14px;">
+                I certify that all information is true and I agree that payments are non-refundable once processed.
+            </p>
+
+            <label class="agree-box">
+                <input type="checkbox" name="Agreement" required>
+                I agree to the Terms and Conditions
+            </label>
+        </div>
+
+        <!-- PAYMENT -->
+        <h2>Payment Method</h2>
+
+        <div class="payment-options">
+
+            <div class="card" onclick="selectPayment('GCASH')" id="gcashCard">
+                <img src="./Screenshot 2026-05-11 105457.jpg" style="width:30px; vertical-align:middle; margin-right:10px;">
+                <span>GCash Payment</span>
+            </div>
+
+            <div class="card" onclick="selectPayment('PNB')" id="pnbCard">
+                🏦 Philippine National Bank
+            </div>
+
+            <div class="card" onclick="selectPayment('CHINA')" id="chinaCard">
+                🏦 Chinabank
+            </div>
+
+        </div>
+
+        <div id="details" class="details"></div>
+
+        <input type="hidden" name="Payment Method" id="paymentMethod">
+
+        <label>Reference Number</label>
+        <input type="text" name="Reference Number" required>
+
+        <label>Sender Name</label>
+        <input type="text" name="Sender Name" required>
+
+        <p><strong>NOTE</strong> Please send proof of payment via screenshot. <a href="https://www.facebook.com/chpcebuinc" target="_blank">Click Here</a></p>
+
+        <button type="submit">PAY & SUBMIT ENROLLMENT</button>
+
+        </form>
+
+    </div>
+</div>
+
+<script>
+
+function selectPayment(type){
+
+    document.getElementById("gcashCard").classList.remove("active");
+    document.getElementById("pnbCard").classList.remove("active");
+    document.getElementById("chinaCard").classList.remove("active");
+
+    let box = document.getElementById("details");
+    document.getElementById("paymentMethod").value = type;
+
+    if(type === "GCASH"){
+        document.getElementById("gcashCard").classList.add("active");
+        box.innerHTML = `
+            <h3>GCash</h3>
+           <p><b>Registration Fee for Filipino </b> ₱2,500.00</p> <p><b>Registration Fee for Foreign </b> $125.00</p> <br>
+            <p><b>Name:</b> Bernard C. Restificar</p>
+            <p><b>Number:</b> 09176206683</p>
+        `;
+    }
+
+    if(type === "PNB"){
+        document.getElementById("pnbCard").classList.add("active");
+        box.innerHTML = `
+            <h3>PNB</h3>
+            <p><b>Registration Fee for Filipino </b> ₱2,500.00</p> <p><b>Registration Fee for Foreign </b> $125.00</p> <br>
+            <p><b>Account:</b> Center for Healthcare Professions Cebu, Inc.</p>
+            <p><b>Number:</b> 303270006265</p>
+        `;
+    }
+
+    if(type === "CHINA"){
+        document.getElementById("chinaCard").classList.add("active");
+        box.innerHTML = `
+            <h3>ChinaBank</h3>
+            <p><b>Registration Fee for Filipino </b> ₱2,500.00</p> <p><b>Registration Fee for Foreign </b> $125.00</p> <br>
+            <p><b>Account:</b> Center for Healthcare Professions Cebu, Inc.</p>
+            <p><b>Number:</b> 1740451714</p>
+        `;
+    }
+}
+
+</script>
+
+</body>
+</html>
