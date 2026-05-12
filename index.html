@@ -573,7 +573,28 @@ function selectPayment(type){
                         🌍 $125 (Foreign)
                     </button>
                 </div>
-                <p style="margin-top: 10px; font-size: 12px; color: #666;">Click your fee type to open GCash and send payment</p>
+                <div style="margin-top: 16px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                    <button type="button" onclick="copyGCashDetails(2500)" style="
+                        background: #556B2F;
+                        color: white;
+                        border: none;
+                        padding: 12px 20px;
+                        border-radius: 8px;
+                        font-size: 14px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 4px 15px rgba(85, 109, 47, 0.25);
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(85, 109, 47, 0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(85, 109, 47, 0.25)'">
+                        📋 Copy payment details
+                    </button>
+                </div>
+                <p style="margin-top: 12px; font-size: 12px; color: #666;">
+                    Open GCash to pay. If the app doesn't auto-fill the amount, copy the details and paste them in Send.
+                </p>
             </div>
         `;
     }
@@ -624,35 +645,52 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to open GCash payment
 function openGCashPayment(amount, currency = 'PHP') {
     const phoneNumber = '09176206683';
-    
+
     // Convert USD to PHP equivalent if needed (approximate conversion)
     let phpAmount = amount;
     if (currency === 'USD') {
-        // Using approximate conversion rate of 1 USD = 56 PHP
         phpAmount = Math.round(amount * 56);
     }
-    
-    // GCash deep link with phone and amount
-    const gcashAppUrl = `gcash://send?phone=${phoneNumber}&amount=${phpAmount}`;
-    
-    // Fallback web URL (GCash web doesn't support direct amount specification well)
-    const gcashWebUrl = `https://www.gcash.com/pay?phone=${phoneNumber}`;
-    
+
+    // Use GCash URL schemes that may open the app with details pre-filled
+    const deepLinkTargets = [
+        `gcash://pay?phone=${phoneNumber}&amount=${phpAmount}`,
+        `gcash://send?phone=${phoneNumber}&amount=${phpAmount}`,
+        `gcash://send?recipient=${phoneNumber}&amount=${phpAmount}`
+    ];
+
+    const fallbackUrl = `https://www.gcash.com/pay?phone=${phoneNumber}`;
+
+    // Try the first deep link; if not available, user can still copy details manually.
     try {
-        // Try to open the app with amount pre-filled
-        window.location.href = gcashAppUrl;
-        
-        // If app doesn't open after 2 seconds, redirect to web
+        window.location.href = deepLinkTargets[0];
+
         setTimeout(function() {
             if (document.hasFocus()) {
-                // App didn't open, redirect to web version
-                window.open(gcashWebUrl, '_blank');
+                window.open(fallbackUrl, '_blank');
             }
-        }, 2000);
-        
+        }, 1800);
     } catch (e) {
-        // Fallback to web version if app link fails
-        window.open(gcashWebUrl, '_blank');
+        window.open(fallbackUrl, '_blank');
+    }
+}
+
+function copyGCashDetails(amount, currency = 'PHP') {
+    let phpAmount = amount;
+    if (currency === 'USD') {
+        phpAmount = Math.round(amount * 56);
+    }
+
+    const paymentText = `GCash details:\nNumber: 09176206683\nAmount: ₱${phpAmount}\nName: Bernard C. Restificar`;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(paymentText).then(function() {
+            alert('GCash payment details copied to clipboard. Paste it into GCash Send.');
+        }).catch(function() {
+            alert('Unable to copy automatically. Please type the details manually.');
+        });
+    } else {
+        alert('Copy not supported by your browser. Please type the number and amount manually.');
     }
 }
 
