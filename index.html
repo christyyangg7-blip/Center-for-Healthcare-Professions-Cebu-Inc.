@@ -639,7 +639,7 @@ function selectPayment(type){
         box.innerHTML = `
             <h3>💰 GCash Payment</h3>
             <div style="margin: 15px 0; padding: 12px; background: #e8f5e9; border-radius: 8px;">
-                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #2c3e50;">₱2,500.00</span></p>
+                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #999; text-decoration: line-through;">₱2,500.00</span> <span style="font-size: 18px; color: #2c3e50; font-weight: 700;">₱800.00</span></p>
                 <p style="margin-top: 8px;"><b>Registration Fee (Foreign):</b> <span style="font-size: 18px; color: #2c3e50;">$125.00</span></p>
             </div>
             <div style="margin-top: 15px; padding: 12px; background: #f0f7ff; border-radius: 8px;">
@@ -648,7 +648,7 @@ function selectPayment(type){
             </div>
             <div style="margin-top: 20px; text-align: center;">
                 <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                    <button type="button" onclick="openGCashPayment(2500)" style="
+                    <button type="button" onclick="openGCashPayment(800)" style="
                         background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
                         color: white;
                         border: none;
@@ -663,7 +663,7 @@ function selectPayment(type){
                         align-items: center;
                         gap: 6px;
                     " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 102, 204, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 102, 204, 0.3)'">
-                        🇵🇭 ₱2,500 (Filipino)
+                        🇵🇭 ₱800 (Promo)
                     </button>
                     <button type="button" onclick="openGCashPayment(125, 'USD')" style="
                         background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
@@ -684,7 +684,7 @@ function selectPayment(type){
                     </button>
                 </div>
                 <div style="margin-top: 16px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-                    <button type="button" onclick="copyGCashDetails(2500)" style="
+                    <button type="button" onclick="copyGCashDetails(800)" style="
                         background: #556B2F;
                         color: white;
                         border: none;
@@ -714,7 +714,7 @@ function selectPayment(type){
         box.innerHTML = `
             <h3>🏦 Philippine National Bank</h3>
             <div style="margin: 15px 0; padding: 12px; background: #e8f5e9; border-radius: 8px;">
-                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #2c3e50;">₱2,500.00</span></p>
+                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #999; text-decoration: line-through;">₱2,500.00</span> <span style="font-size: 18px; color: #2c3e50; font-weight: 700;">₱800.00</span></p>
                 <p style="margin-top: 8px;"><b>Registration Fee (Foreign):</b> <span style="font-size: 18px; color: #2c3e50;">$125.00</span></p>
             </div>
             <div style="margin-top: 15px; padding: 12px; background: #f0f7ff; border-radius: 8px;">
@@ -729,7 +729,7 @@ function selectPayment(type){
         box.innerHTML = `
             <h3>🏦 Chinabank</h3>
             <div style="margin: 15px 0; padding: 12px; background: #e8f5e9; border-radius: 8px;">
-                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #2c3e50;">₱2,500.00</span></p>
+                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #999; text-decoration: line-through;">₱2,500.00</span> <span style="font-size: 18px; color: #2c3e50; font-weight: 700;">₱800.00</span></p>
                 <p style="margin-top: 8px;"><b>Registration Fee (Foreign):</b> <span style="font-size: 18px; color: #2c3e50;">$125.00</span></p>
             </div>
             <div style="margin-top: 15px; padding: 12px; background: #f0f7ff; border-radius: 8px;">
