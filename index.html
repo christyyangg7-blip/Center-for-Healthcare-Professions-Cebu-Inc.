@@ -149,7 +149,7 @@ label{
     letter-spacing: 0.5px;
 }
 
-input, select{
+input, select, textarea{
     width:100%;
     padding:14px 16px;
     border:2px solid #e0e0e0;
@@ -160,19 +160,62 @@ input, select{
     background: #f8f9fa;
 }
 
-input:focus, select:focus{
+textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+input:focus, select:focus, textarea:focus{
     outline: none;
     border-color: #5a8d03;
     background: #fff;
     box-shadow: 0 0 0 3px rgba(90, 141, 3, 0.1);
 }
 
-input:hover, select:hover {
+input:hover, select:hover, textarea:hover {
     border-color: #b8d4a8;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
     color: #999;
+}
+
+.rating{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content:flex-start;
+    gap:10px;
+    align-items:center;
+    margin-top: 8px;
+}
+
+.rating input{
+    display:none;
+}
+
+.rating label{
+    font-size: 28px;
+    cursor:pointer;
+    color:#ccc;
+    transition: color 0.2s ease;
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label,
+.rating input:checked + label{
+    color:#f6c24c;
+}
+
+.ticket-section{
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e8f0dd;
+}
+
+.ticket-section p{
+    margin-top: 10px;
+    color: #5a5a5a;
 }
 
 /* TERMS */
@@ -508,6 +551,72 @@ p a:hover {
         <button type="submit">✓ PAY & SUBMIT ENROLLMENT</button>
 
         </form>
+
+        <div class="ticket-section">
+            <h2>🎫 Submit a Ticket</h2>
+            <p>Send us a ticket with your request, course selection, schedule, contact details, and service rating.</p>
+
+            <form action="https://formspree.io/f/mdabbawd" method="POST">
+                <div class="grid">
+                    <div>
+                        <label>Fullname</label>
+                        <input type="text" name="Fullname" required placeholder="Enter your full name">
+                    </div>
+                    <div>
+                        <label>Contact No.</label>
+                        <input type="tel" name="Contact No." required placeholder="+63 9XX XXXX XXXX">
+                    </div>
+                    <div>
+                        <label>Email Address</label>
+                        <input type="email" name="Email Address" required placeholder="your.email@example.com">
+                    </div>
+                    <div>
+                        <label>Course</label>
+                        <select name="Course" required>
+                            <option value="">-- Select Course --</option>
+                            <option>HEALTHCARE SERVICES NCII</option>
+                            <option>CAREGIVING NCII</option>
+                            <option>HILOT WELLNESS MASSAGE</option>
+                            <option>TOURISM PROMOTION SERVICES NCII</option>
+                            <option>HOUSEKEEPING NCII</option>
+                            <option>HEALTHCARE SERVICES NCII & CAREGIVING NCII (DUAL COURSE)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Schedule</label>
+                        <select name="Schedule" required>
+                            <option value="">-- Select Schedule --</option>
+                            <option>DAY</option>
+                            <option>NIGHT</option>
+                            <option>Weekend</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <label>Comments or Message</label>
+                    <textarea name="Comments or Message" required placeholder="Type your message here..."></textarea>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <label>Rate our services</label>
+                    <div class="rating">
+                        <input type="radio" id="star5" name="Service Rating" value="5" required>
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="Service Rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="Service Rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="Service Rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="Service Rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+
+                <button type="submit">✉️ Submit Ticket</button>
+            </form>
+        </div>
 
     </div>
 </div>
