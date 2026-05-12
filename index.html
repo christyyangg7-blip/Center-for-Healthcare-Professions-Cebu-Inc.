@@ -536,6 +536,26 @@ function selectPayment(type){
                 <p><b>📱 Name:</b> Bernard C. Restificar</p>
                 <p style="margin-top: 8px;"><b>📞 Number:</b> 09176206683</p>
             </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button type="button" onclick="openGCashPayment()" style="
+                    background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+                    color: white;
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 102, 204, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 102, 204, 0.3)'">
+                    💳 Pay with GCash
+                </button>
+                <p style="margin-top: 10px; font-size: 12px; color: #666;">Click to open GCash app and send payment</p>
+            </div>
         `;
     }
 
@@ -581,6 +601,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Function to open GCash payment
+function openGCashPayment() {
+    const phoneNumber = '09176206683';
+    
+    // Try to open GCash app first (deep link)
+    const gcashAppUrl = `gcash://send?phone=${phoneNumber}`;
+    
+    // Fallback web URL
+    const gcashWebUrl = `https://www.gcash.com/pay?phone=${phoneNumber}`;
+    
+    // Create a temporary link element to test if the app opens
+    const testLink = document.createElement('a');
+    testLink.href = gcashAppUrl;
+    testLink.style.display = 'none';
+    document.body.appendChild(testLink);
+    
+    try {
+        // Try to open the app
+        window.location.href = gcashAppUrl;
+        
+        // If app doesn't open after 2 seconds, redirect to web
+        setTimeout(function() {
+            if (document.hasFocus()) {
+                // App didn't open, redirect to web version
+                window.open(gcashWebUrl, '_blank');
+            }
+        }, 2000);
+        
+    } catch (e) {
+        // Fallback to web version if app link fails
+        window.open(gcashWebUrl, '_blank');
+    }
+    
+    // Clean up
+    document.body.removeChild(testLink);
+}
 
 </script>
 
