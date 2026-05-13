@@ -50,6 +50,7 @@ body{
     text-align:center;
     color:#fff;
     position:relative;
+    min-height:40px;
     box-shadow: 0 4px 20px rgba(4, 243, 84, 0.678);
 }
 
@@ -75,10 +76,18 @@ body{
 }
 
 /* BACK BUTTON */
-.back-btn{
+.header-actions{
     position:absolute;
-    left:20px;
     top:20px;
+    left:15px;
+    right:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:10;
+}
+
+.back-btn{
     font-size:20px;
     text-decoration:none;
     color:#fff;
@@ -95,6 +104,31 @@ body{
 .back-btn:hover{
     background:rgba(255,255,255,0.4);
     transform: translateX(-3px);
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* TICKET BUTTON */
+.ticket-btn{
+    width: auto;
+    margin-top: 0;
+    font-size:14px;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(255,255,255,0.25);
+    padding:8px 12px;
+    border-radius:10px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.ticket-btn:hover{
+    background:rgba(255,255,255,0.4);
+    transform: translateX(3px);
     border-color: rgba(255,255,255,0.5);
 }
 
@@ -206,17 +240,6 @@ input::placeholder, textarea::placeholder {
 .rating input:checked ~ label,
 .rating input:checked + label{
     color:#f6c24c;
-}
-
-.ticket-section{
-    margin-top: 40px;
-    padding-top: 30px;
-    border-top: 1px solid #e8f0dd;
-}
-
-.ticket-section p{
-    margin-top: 10px;
-    color: #5a5a5a;
 }
 
 /* TERMS */
@@ -411,6 +434,55 @@ p a:hover {
     }
 }
 
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+@media(max-width:700px){
+    .modal-content {
+        padding: 25px;
+        margin: 10% auto;
+    }
+}
+
 </style>
 </head>
 
@@ -420,9 +492,10 @@ p a:hover {
 
     <!-- HEADER -->
     <div class="header">
-
-        <!-- BACK BUTTON -->
-        <a href="https://chpcebu.com" class="back-btn">←</a>
+        <div class="header-actions">
+            <a href="https://chpcebu.com" class="back-btn">←</a>
+            <button class="ticket-btn" onclick="openTicketModal()">🎫 Submit a Ticket</button>
+        </div>
 
         <img src="./image.png" alt="CHP Cebu Logo">
         <h1>Student Enrollment Form</h1>
@@ -492,6 +565,15 @@ p a:hover {
             </select>
         </div>
 
+        <div style="margin-top: 20px;">
+            <label>Payment Terms</label>
+            <select name="Payment Terms" required>
+                <option value="">-- Select Payment Terms --</option>
+                <option>Installment</option>
+                <option>Outright Cash</option>
+            </select>
+        </div>
+
         <!-- TERMS -->
         <div class="terms">
             <strong>✓ Terms & Conditions Agreement</strong>
@@ -526,6 +608,11 @@ p a:hover {
                 <span style="font-size: 12px; color: #999;">Bank Transfer</span>
             </div>
 
+            <div class="card" onclick="selectPayment('PAYINSITE')" id="payinsiteCard">
+                🏢 <span style="flex: 1; margin-left: 10px;">Pay In Site</span>
+                <span style="font-size: 12px; color: #999;">Pay at the campus</span>
+            </div>
+
         </div>
 
         <div id="details" class="details" style="display: none;"></div>
@@ -553,72 +640,76 @@ p a:hover {
 
         </form>
 
-        <div class="ticket-section">
-            <h2>🎫 Submit a Ticket</h2>
-            <p>Send us a ticket with your request, course selection, schedule, contact details, and service rating.</p>
+    </div>
+</div>
 
-            <form action="https://formspree.io/f/mdabbawd" method="POST">
-                <div class="grid">
-                    <div>
-                        <label>Fullname</label>
-                        <input type="text" name="Fullname" required placeholder="Enter your full name">
-                    </div>
-                    <div>
-                        <label>Contact No.</label>
-                        <input type="tel" name="Contact No." required placeholder="+63 9XX XXXX XXXX">
-                    </div>
-                    <div>
-                        <label>Email Address</label>
-                        <input type="email" name="Email Address" required placeholder="your.email@example.com">
-                    </div>
-                    <div>
-                        <label>Course</label>
-                        <select name="Course" required>
-                            <option value="">-- Select Course --</option>
-                            <option>HEALTHCARE SERVICES NCII</option>
-                            <option>CAREGIVING NCII</option>
-                            <option>HILOT WELLNESS MASSAGE</option>
-                            <option>TOURISM PROMOTION SERVICES NCII</option>
-                            <option>HOUSEKEEPING NCII</option>
-                            <option>HEALTHCARE SERVICES NCII & CAREGIVING NCII (DUAL COURSE)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Schedule</label>
-                        <select name="Schedule" required>
-                            <option value="">-- Select Schedule --</option>
-                            <option>DAY</option>
-                            <option>NIGHT</option>
-                            <option>Weekend</option>
-                        </select>
-                    </div>
+<!-- TICKET MODAL -->
+<div id="ticketModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeTicketModal()">&times;</span>
+        <h2>🎫 Submit a Ticket</h2>
+        <p>Send us a ticket with your request, course selection, schedule, contact details, and service rating.</p>
+
+        <form action="https://formspree.io/f/mdabbawd" method="POST">
+            <div class="grid">
+                <div>
+                    <label>Fullname</label>
+                    <input type="text" name="Fullname" required placeholder="Enter your full name">
                 </div>
-
-                <div style="margin-top: 20px;">
-                    <label>Comments or Message</label>
-                    <textarea name="Comments or Message" required placeholder="Type your message here..."></textarea>
+                <div>
+                    <label>Contact No.</label>
+                    <input type="tel" name="Contact No." required placeholder="+63 9XX XXXX XXXX">
                 </div>
-
-                <div style="margin-top: 20px;">
-                    <label>Rate our services</label>
-                    <div class="rating">
-                        <input type="radio" id="star5" name="Service Rating" value="5" required>
-                        <label for="star5">★</label>
-                        <input type="radio" id="star4" name="Service Rating" value="4">
-                        <label for="star4">★</label>
-                        <input type="radio" id="star3" name="Service Rating" value="3">
-                        <label for="star3">★</label>
-                        <input type="radio" id="star2" name="Service Rating" value="2">
-                        <label for="star2">★</label>
-                        <input type="radio" id="star1" name="Service Rating" value="1">
-                        <label for="star1">★</label>
-                    </div>
+                <div>
+                    <label>Email Address</label>
+                    <input type="email" name="Email Address" required placeholder="your.email@example.com">
                 </div>
+                <div>
+                    <label>Course</label>
+                    <select name="Course" required>
+                        <option value="">-- Select Course --</option>
+                        <option>HEALTHCARE SERVICES NCII</option>
+                        <option>CAREGIVING NCII</option>
+                        <option>HILOT WELLNESS MASSAGE</option>
+                        <option>TOURISM PROMOTION SERVICES NCII</option>
+                        <option>HOUSEKEEPING NCII</option>
+                        <option>HEALTHCARE SERVICES NCII & CAREGIVING NCII (DUAL COURSE)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Schedule</label>
+                    <select name="Schedule" required>
+                        <option value="">-- Select Schedule --</option>
+                        <option>DAY</option>
+                        <option>NIGHT</option>
+                        <option>Weekend</option>
+                    </select>
+                </div>
+            </div>
 
-                <button type="submit">✉️ Submit Ticket</button>
-            </form>
-        </div>
+            <div style="margin-top: 20px;">
+                <label>Comments or Message</label>
+                <textarea name="Comments or Message" required placeholder="Type your message here..."></textarea>
+            </div>
 
+            <div style="margin-top: 20px;">
+                <label>Rate our services</label>
+                <div class="rating">
+                    <input type="radio" id="star5" name="Service Rating" value="5" required>
+                    <label for="star5">★</label>
+                    <input type="radio" id="star4" name="Service Rating" value="4">
+                    <label for="star4">★</label>
+                    <input type="radio" id="star3" name="Service Rating" value="3">
+                    <label for="star3">★</label>
+                    <input type="radio" id="star2" name="Service Rating" value="2">
+                    <label for="star2">★</label>
+                    <input type="radio" id="star1" name="Service Rating" value="1">
+                    <label for="star1">★</label>
+                </div>
+            </div>
+
+            <button type="submit">✉️ Submit Ticket</button>
+        </form>
     </div>
 </div>
 
@@ -629,6 +720,7 @@ function selectPayment(type){
     document.getElementById("gcashCard").classList.remove("active");
     document.getElementById("pnbCard").classList.remove("active");
     document.getElementById("chinaCard").classList.remove("active");
+    document.getElementById("payinsiteCard").classList.remove("active");
 
     let box = document.getElementById("details");
     document.getElementById("paymentMethod").value = type;
@@ -738,6 +830,26 @@ function selectPayment(type){
             </div>
         `;
     }
+
+    if(type === "PAYINSITE"){
+        document.getElementById("payinsiteCard").classList.add("active");
+        box.innerHTML = `
+            <h3>🏢 Pay In Site</h3>
+            <div style="margin: 15px 0; padding: 12px; background: #e8f5e9; border-radius: 8px;">
+                <p><b>Registration Fee (Filipino):</b> <span style="font-size: 18px; color: #999; text-decoration: line-through;">₱2,500.00</span> <span style="font-size: 18px; color: #2c3e50; font-weight: 700;">₱800.00</span></p>
+                <p style="margin-top: 8px;"><b>Registration Fee (Foreign):</b> <span style="font-size: 18px; color: #2c3e50;">$125.00</span></p>
+            </div>
+            <div style="margin-top: 15px; padding: 12px; background: #f0f7ff; border-radius: 8px;">
+                <p><b>📍 Location:</b> CHP Cebu Campus</p>
+                <p style="margin-top: 8px;"><b>🕒 Hours:</b> Monday to Saturday, 8:00 AM - 5:00 PM</p>
+                <p style="margin-top: 8px;"><b>📞 Contact:</b> +63 917 777 0851</p>
+            </div>
+            <div style="margin-top: 15px; border-radius: 12px; overflow: hidden;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d15701.176591056874!2d123.96385245!3d10.31832795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x33a9984cec8e9243%3A0x21d00abb767a968b!2sFirst%20Consolidated%20Bank%2C%20FCB%20Finance%20Center%2C%20A.C.%20Cortes%20St%20Corner%20PT.%20Burgos%20St%2C%20Mandaue%2C%206014%20Cebu!3m2!1d10.3313297!2d123.94615329999999!5e0!3m2!1sen!2sph!4v1778629381590!5m2!1sen!2sph" width="100%" height="260" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; color: #555;">Please visit the site to pay in person and Look for Sir Dee. Payment will be verified during processing.</p>
+        `;
+    }
 }
 
 // Smooth scroll to payment details when selected
@@ -801,6 +913,23 @@ function copyGCashDetails(amount, currency = 'PHP') {
         });
     } else {
         alert('Copy not supported by your browser. Please type the number and amount manually.');
+    }
+}
+
+// Modal functions
+function openTicketModal() {
+    document.getElementById('ticketModal').style.display = 'block';
+}
+
+function closeTicketModal() {
+    document.getElementById('ticketModal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('ticketModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
     }
 }
 
