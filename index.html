@@ -869,7 +869,10 @@ window.addEventListener('load', function() {
     trySpeakWelcome();
 
     // Some mobile browsers require a user gesture first.
-    const userGesture = () => {
+    const userGesture = (event) => {
+        if (event.target.closest && event.target.closest('.ticket-btn')) {
+            return;
+        }
         trySpeakWelcome();
     };
 
