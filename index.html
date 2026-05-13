@@ -855,7 +855,7 @@ function selectPayment(type){
 let welcomeSpoken = false;
 
 // Smooth scroll to payment details when selected
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
         card.addEventListener('click', function() {
@@ -868,15 +868,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Try to play welcome voice on load
     trySpeakWelcome();
 
-    // Some mobile browsers block autoplay; speak after first touch/click if needed.
+    // Some mobile browsers require a user gesture first.
     const userGesture = () => {
         trySpeakWelcome();
-        window.removeEventListener('touchend', userGesture);
-        window.removeEventListener('click', userGesture);
     };
 
-    window.addEventListener('touchend', userGesture, { once: true });
-    window.addEventListener('click', userGesture, { once: true });
+    ['touchstart', 'mousedown', 'click', 'keydown'].forEach(evt => {
+        window.addEventListener(evt, userGesture, { once: true });
+    });
 });
 
 function trySpeakWelcome() {
@@ -884,6 +883,7 @@ function trySpeakWelcome() {
     const message = 'Welcome to Center for Healthcare Professions Cebu Incorporated. To proceed an enrollment, please fill up the enrollment form.';
     if ('speechSynthesis' in window) {
         try {
+            window.speechSynthesis.getVoices();
             const utterance = new SpeechSynthesisUtterance(message);
             utterance.lang = 'en-US';
             utterance.rate = 1;
