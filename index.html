@@ -862,7 +862,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         });
     });
+
+    // Welcome voice prompt
+    speakWelcome();
 });
+
+function speakWelcome() {
+    const message = 'Welcome to Center for Healthcare Professions Cebu Incorporated. To proceed an enrollment, please fill up the enrollment form.';
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(message);
+        utterance.lang = 'en-US';
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    }
+}
 
 // Function to open GCash payment
 function openGCashPayment(amount, currency = 'PHP') {
